@@ -8,4 +8,8 @@ class ReviewsController < ApplicationController
     render json: Review.all
   end
 
+  def show
+    render json: Review.find(params[:id])
+  end
+
 end
