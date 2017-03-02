@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save && user.authenticate(params[:user][:password])
-      token = token(user.id, user.email)
+      token = token(user.id, user.email_username)
 
       render json: {status: 200, message: "user created and logged in", user: user, token: token}
     else
@@ -21,14 +21,14 @@ class UsersController < ApplicationController
   end
 
   def login
-    if params[:user][:email].include? "@"
-      user = User.find_by(email: params[:user][:email])
+    if params[:user][:email_username].include? "@"
+      user = User.find_by(email: params[:user][:email_username])
     else
-      user = User.find_by(username: params[:user][:email])
+      user = User.find_by(username: params[:user][:email_username])
     end
 
     if user && user.authenticate(params[:user][:password])
-      token = token(user.id, user.email)
+      token = token(user.id, user.email_username)
 
       render json: {status: 201, user: user, message: "user logged in", token: token}
     else
