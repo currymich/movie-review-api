@@ -4,5 +4,7 @@ Rails.application.routes.draw do
     collection do
       post '/login', to: 'users#login'
     end
+    resources :reviews
   end
+  get '/get_all', to: 'reviews#get_all'
 end
