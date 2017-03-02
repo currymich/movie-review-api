@@ -703,3 +703,146 @@ Processing by ReviewsController#show as */*
 Completed 200 OK in 10ms (Views: 0.5ms | ActiveRecord: 0.5ms)
 
 
+Started POST "/users/2/reviews" for ::1 at 2017-03-01 23:45:33 -0800
+Processing by ReviewsController#create as */*
+  Parameters: {"{\n  \"title\": \"This Movie is Terrible\",\n  \"rating\": \"1\",\n  \"comments\": \"I want my money back!\",\n  \"user_id\": 1,\n  \"movie_id\": 1\n}"=>nil, "user_id"=>"2"}
+Completed 400 Bad Request in 4ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: review):
+  
+app/controllers/reviews_controller.rb:32:in `review_params'
+app/controllers/reviews_controller.rb:16:in `create'
+Started GET "/users/2/reviews" for ::1 at 2017-03-01 23:46:43 -0800
+Processing by ReviewsController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+Completed 200 OK in 12ms (Views: 7.5ms | ActiveRecord: 4.2ms)
+
+
+Started POST "/users/2/reviews" for ::1 at 2017-03-01 23:46:58 -0800
+Processing by ReviewsController#create as */*
+  Parameters: {"{\n  \"title\": \"This Movie is Terrible\",\n  \"rating\": \"1\",\n  \"comments\": \"I want my money back!\",\n  \"user_id\": 1,\n  \"movie_id\": 1\n}"=>nil, "user_id"=>"2"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: review):
+  
+app/controllers/reviews_controller.rb:32:in `review_params'
+app/controllers/reviews_controller.rb:16:in `create'
+Started POST "/users/2/reviews" for ::1 at 2017-03-01 23:47:57 -0800
+Processing by ReviewsController#create as */*
+  Parameters: {"{\n  \"title\": \"This Movie is Terrible\",\n  \"rating\": \"1\",\n  \"comments\": \"I want my money back!\",\n  \"user_id\": 1,\n  \"movie_id\": 1\n}"=>nil, "user_id"=>"2"}
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: review):
+  
+app/controllers/reviews_controller.rb:32:in `review_params'
+app/controllers/reviews_controller.rb:16:in `create'
+Started POST "/users/2/reviews" for ::1 at 2017-03-01 23:51:39 -0800
+Processing by ReviewsController#create as */*
+  Parameters: {"{\n  \"title\": \"This Movie is Terrible\",\n  \"rating\": \"1\",\n  \"comments\": \"I want my money back!\",\n  \"user_id\": 1,\n  \"movie_id\": 1\n}"=>nil, "user_id"=>"2"}
+Completed 400 Bad Request in 4ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: review):
+  
+app/controllers/reviews_controller.rb:32:in `review_params'
+app/controllers/reviews_controller.rb:16:in `create'
+Started POST "/users/login" for ::1 at 2017-03-02 07:47:33 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#login as */*
+  Parameters: {"user"=>{"email"=>"m@m.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "m@m.com"], ["LIMIT", 1]]
+Completed 200 OK in 107ms (Views: 0.7ms | ActiveRecord: 9.7ms)
+
+
+Started GET "/users/2" for ::1 at 2017-03-02 07:48:23 -0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Filter chain halted as :authorize rendered or redirected
+Completed 200 OK in 42ms (Views: 0.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/2" for ::1 at 2017-03-02 07:48:31 -0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Filter chain halted as :authorize rendered or redirected
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/users/login" for ::1 at 2017-03-02 07:48:39 -0800
+Processing by UsersController#login as */*
+  Parameters: {"user"=>{"email"=>"m@m.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "m@m.com"], ["LIMIT", 1]]
+Completed 200 OK in 76ms (Views: 0.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users/1" for ::1 at 2017-03-02 07:48:54 -0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/1/reviews" for ::1 at 2017-03-02 07:49:08 -0800
+Processing by ReviewsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mReview Load (1.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+Completed 200 OK in 21ms (Views: 9.7ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/users/1/reviews/2" for ::1 at 2017-03-02 07:49:41 -0800
+Processing by ReviewsController#show as */*
+  Parameters: {"user_id"=>"1", "id"=>"2"}
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT  "reviews".* FROM "reviews" WHERE "reviews"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users/1/reviews" for ::1 at 2017-03-02 07:51:53 -0800
+Processing by ReviewsController#create as */*
+  Parameters: {"{\n  \"title\": \"This Movie is Terrible\",\n  \"rating\": \"1\",\n  \"comments\": \"I want my money back!\",\n  \"user_id\": 1,\n  \"movie_id\": 1\n}"=>nil, "user_id"=>"1"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: review):
+  
+app/controllers/reviews_controller.rb:32:in `review_params'
+app/controllers/reviews_controller.rb:16:in `create'
+Started POST "/users/1/reviews" for ::1 at 2017-03-02 07:53:26 -0800
+Processing by ReviewsController#create as */*
+  Parameters: {"{ review:\n{\n  \"title\": \"This Movie is Terrible\",\n  \"rating\": \"1\",\n  \"comments\": \"I want my money back!\",\n  \"user_id\": 1,\n  \"movie_id\": 1\n}\n}"=>nil, "user_id"=>"1"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: review):
+  
+app/controllers/reviews_controller.rb:32:in `review_params'
+app/controllers/reviews_controller.rb:16:in `create'
+Started POST "/users/1/reviews" for ::1 at 2017-03-02 07:53:59 -0800
+Processing by ReviewsController#create as */*
+  Parameters: {"review"=>{"title"=>"This Movie is Terrible", "rating"=>"1", "comments"=>"I want my money back!", "user_id"=>1, "movie_id"=>1}, "user_id"=>"1"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMovie Load (0.6ms)[0m  [1m[34mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "reviews" ("title", "rating", "comments", "user_id", "movie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "This Movie is Terrible"], ["rating", "1"], ["comments", "I want my money back!"], ["user_id", 1], ["movie_id", 1], ["created_at", 2017-03-02 15:54:00 UTC], ["updated_at", 2017-03-02 15:54:00 UTC]]
+  [1m[35m (653.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 750ms (Views: 0.6ms | ActiveRecord: 662.0ms)
+
+
+Started GET "/users/1/reviews" for ::1 at 2017-03-02 07:55:12 -0800
+Processing by ReviewsController#index as */*
+  Parameters: {"user_id"=>"1", "review"=>{}}
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.4ms)
+
+

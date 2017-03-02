@@ -12,4 +12,23 @@ class ReviewsController < ApplicationController
     render json: Review.find(params[:id])
   end
 
+  def create
+    review = Review.new(review_params)
+
+    if review.save
+      render json: {status: 201, review: review}
+      # render json: review, status: :created, location: review
+    else
+      render json: {status: 422}
+      # render json: review.errors, status: :unprocessable_entity
+    end
+  end
+
+
+
+  private
+
+    def review_params
+      params.require(:review).permit(:title, :rating, :comments, :user_id, :movie_id)
+    end
 end
