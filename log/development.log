@@ -846,3 +846,22 @@ Processing by ReviewsController#index as */*
 Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.4ms)
 
 
+Started PUT "/users/1/reviews/3" for ::1 at 2017-03-02 08:01:47 -0800
+Processing by ReviewsController#update as */*
+  Parameters: {"review"=>{"title"=>"Edit: This Movie is Terrible", "rating"=>"2", "comments"=>"I was too harsh before", "user_id"=>1, "movie_id"=>1}, "user_id"=>"1", "id"=>"3"}
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT  "reviews".* FROM "reviews" WHERE "reviews"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMovie Load (0.5ms)[0m  [1m[34mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (26.2ms)[0m  [1m[33mUPDATE "reviews" SET "title" = $1, "rating" = $2, "comments" = $3, "updated_at" = $4 WHERE "reviews"."id" = $5[0m  [["title", "Edit: This Movie is Terrible"], ["rating", "2"], ["comments", "I was too harsh before"], ["updated_at", 2017-03-02 16:01:47 UTC], ["id", 3]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 93ms (Views: 0.5ms | ActiveRecord: 46.1ms)
+
+
+Started GET "/users/1/reviews" for ::1 at 2017-03-02 08:01:55 -0800
+Processing by ReviewsController#index as */*
+  Parameters: {"user_id"=>"1", "review"=>{}}
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+Completed 200 OK in 9ms (Views: 8.4ms | ActiveRecord: 0.7ms)
+
+

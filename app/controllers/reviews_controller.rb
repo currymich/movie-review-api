@@ -24,7 +24,15 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def update
+    review = Review.find(params[:id])
 
+    if review.update(review_params)
+      render json: {status: 201, review: review}
+    else
+      render json: {status: 422}
+    end
+  end
 
   private
 
