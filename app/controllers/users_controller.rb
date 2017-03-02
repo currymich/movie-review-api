@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :authorize, except: [:login, :create]
 
+  def reviews
+    render json: {reviews: User.find(params[:id]).reviews}
+  end
+
   def create
     user = User.new(user_params)
     if user.save && user.authenticate(params[:user][:password])

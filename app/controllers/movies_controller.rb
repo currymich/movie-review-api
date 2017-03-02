@@ -1,4 +1,8 @@
 class MoviesController < ApplicationController
+  def reviews
+    render json: {reviews: Movie.find(params[:id]).reviews}
+  end
+
   def index
     render json: {movies: Movie.all}
   end
