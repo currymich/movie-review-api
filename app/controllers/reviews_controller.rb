@@ -4,5 +4,8 @@ class ReviewsController < ApplicationController
     render json: {users: User.all, movies: Movie.all, reviews: Review.all}
   end
 
+  def index
+    render json: Review.all
+  end
 
 end
