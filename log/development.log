@@ -865,3 +865,20 @@ Processing by ReviewsController#index as */*
 Completed 200 OK in 9ms (Views: 8.4ms | ActiveRecord: 0.7ms)
 
 
+Started DELETE "/users/1/reviews/3" for ::1 at 2017-03-02 08:04:09 -0800
+Processing by ReviewsController#destroy as */*
+  Parameters: {"review"=>{"title"=>"Edit: This Movie is Terrible", "rating"=>"2", "comments"=>"I was too harsh before", "user_id"=>1, "movie_id"=>1}, "user_id"=>"1", "id"=>"3"}
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT  "reviews".* FROM "reviews" WHERE "reviews"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (3.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 3]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 26ms (Views: 0.2ms | ActiveRecord: 11.7ms)
+
+
+Started GET "/users/1/reviews" for ::1 at 2017-03-02 08:04:17 -0800
+Processing by ReviewsController#index as */*
+  Parameters: {"user_id"=>"1", "review"=>{}}
+  [1m[36mReview Load (1.0ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 1.0ms)
+
+
