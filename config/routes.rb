@@ -1,18 +1,19 @@
 Rails.application.routes.draw do
-  resources :movies, only: [:index, :show] do
+  resources :movies, only: [:index, :show, :create] do
     collection do
-      get '/:id/reviews', to: 'movies#reviews'
       get '/search', to: 'movies#search'
     end
   end
-  resources :reviews
+  resources :reviews, only: [:show, :index, :destroy, :update]
   resources :users, only: [:create, :show] do
     collection do
       post '/login', to: 'users#login'
       put '/edit', to: 'users#update'
-      get '/:id/reviews', to: 'users#reviews'
     end
   end
+  get 'movies/:imdbID/reviews', to: 'reviews#reviewsByMovie'
+  post 'movies/:imdbID/reviews', to: 'reviews#newReview'
+  get 'users/:id/reviews', to: 'reviews#reviewsByUser'
 end
 
 
