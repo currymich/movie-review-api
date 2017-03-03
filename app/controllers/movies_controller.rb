@@ -9,10 +9,6 @@ class MoviesController < ApplicationController
     render json: {small: movie_small, large: movie_large}
   end
 
-  def reviews
-    render json: {reviews: Movie.find_by_imdbID(movie_params[:imdbID]).reviews}
-  end
-
   def index
     render json: {movies: Movie.all}
   end
@@ -37,8 +33,19 @@ class MoviesController < ApplicationController
     movie.destroy
   end
 
+  def create
+    movie = Movie.new(movie_params)
+
+    if movie.save
+      render json: {status: 201, movie: movie}
+    else
+      render json: {status: 422}
+    end
+  end
+
+
   private
     def movie_params
-      params.required(:movie).permit(:title, :poster, :imdbID)
+      params.required(:movie).permit(:Title, :Poster, :imdbID, :Genre, :Rated, :Metascore, :imdbRating, :Plot, :Year)
     end
 end
