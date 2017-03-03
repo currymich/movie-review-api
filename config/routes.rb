@@ -17,20 +17,24 @@ Rails.application.routes.draw do
 end
 
 
-# Prefix Verb        URI Pattern                          Controller#Action
-#        GET         /movies/:id/reviews(.:format)        movies#reviews
-# movies GET         /movies(.:format)                    movies#index
-#        POST        /movies(.:format)                    movies#create
-#  movie GET         /movies/:id(.:format)                movies#show
+# Prefix Verb   URI Pattern                       Controller#Action
+# GET           /movies/search(.:format)          movies#search
+# GET           /movies(.:format)                 movies#index
+# POST          /movies(.:format)                 movies#create
+# GET           /movies/:id(.:format)             movies#show
 
-# reviews GET        /reviews(.:format)                   reviews#index
-#        POST        /reviews(.:format)                   reviews#create
-# review GET         /reviews/:id(.:format)               reviews#show
-#        PATCH       /reviews/:id(.:format)               reviews#update
-#        PUT         /reviews/:id(.:format)               reviews#update
-#        DELETE      /reviews/:id(.:format)               reviews#destroy
 
-# login  POST        /users/login(.:format)               users#login
-#        GET         /users/:id/reviews(.:format)         users#reviews
-#  users POST        /users(.:format)                     users#create
-#   user GET         /users/:id(.:format)                 users#show
+# GET           /reviews(.:format)                reviews#index
+# GET           /reviews/:id(.:format)            reviews#show
+# PATCH         /reviews/:id(.:format)            reviews#update
+# PUT           /reviews/:id(.:format)            reviews#update
+# DELETE        /reviews/:id(.:format)            reviews#destroy
+# GET           /movies/:imdbID/reviews(.:format) reviews#reviewsByMovie
+# POST          /movies/:imdbID/reviews(.:format) reviews#newReview
+# GET           /users/:id/reviews(.:format)      reviews#reviewsByUser
+
+
+# POST          /users/login(.:format)            users#login
+# PUT           /users/edit(.:format)             users#update
+# POST          /users(.:format)                  users#create
+# GET           /users/:id(.:format)              users#show
