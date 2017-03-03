@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
   end
 
   def reviews
-    render json: {reviews: Movie.find(params[:id]).reviews}
+    render json: {reviews: Movie.find_by_imdbID(movie_params[:imdbID]).reviews}
   end
 
   def index
@@ -39,6 +39,6 @@ class MoviesController < ApplicationController
 
   private
     def movie_params
-      params.required(:movie).permit(:title, :poster)
+      params.required(:movie).permit(:title, :poster, :imdbID)
     end
 end
