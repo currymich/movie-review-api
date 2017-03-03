@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorize, except: [:login, :create]
+  before_action :authorize, except: [:login, :create, :update]
 
   def reviews
     render json: {reviews: User.find(params[:id]).reviews}
@@ -33,6 +33,16 @@ class UsersController < ApplicationController
       render json: {status: 201, user: user, message: "user logged in", token: token}
     else
       render json: {status: 401, message: "unauthorized"}
+    end
+  end
+
+  def update
+    user = User.find_by_email(user_params[:email])
+
+    if user.update(user_params)
+      render json: {status: 201, user: user}
+    else
+      render json: {status: 422}
     end
   end
 

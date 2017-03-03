@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :show] do
     collection do
       post '/login', to: 'users#login'
+      put '/edit', to: 'users#update'
       get '/:id/reviews', to: 'users#reviews'
     end
   end
