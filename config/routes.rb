@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     end
   end
   resources :reviews
-  resources :users, only: [:create, :show] do
+  resources :users, only: [:create, :show, :update] do
     collection do
       post '/login', to: 'users#login'
       get '/:id/reviews', to: 'users#reviews'
