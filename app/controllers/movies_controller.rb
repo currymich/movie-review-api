@@ -2,9 +2,11 @@ class MoviesController < ApplicationController
   def search
     title = params[:title].split(' ').join('+')
 
-    movie = HTTParty.get("http://www.omdbapi.com/?t=#{title}")
+    movie_small = HTTParty.get("http://www.omdbapi.com/?s=#{title}&page=1")
 
-    render json: {movie: movie}
+    movie_large = HTTParty.get("http://www.omdbapi.com/?t=#{title}")
+
+    render json: {small: movie_small, large: movie_large}
   end
 
   def reviews
