@@ -27,16 +27,24 @@ class ReviewsController < ApplicationController
 
   def newReview
     movie = Movie.find_by_imdbID(params[:imdbID])
-    review_params[:movie_id] = movie.id
     review = Review.new(review_params)
+    review[:movie_id] = movie.id
+    review[:user_id] = 4
 
-    render json: {movie: movie, params: review_params, id: movie.id}
+    if review.save!
+      render json: {status: 201, review: review}
+    else
+      render json: {status: 422}
+    end
+  end
 
-    # if review.save
-    #   render json: {status: 201, review: review}
-    # else
-    #   render json: {status: 422}
-    # end
+  def reviewsByUser
+    reviews = User.find(4).reviews
+    render json: {reviews: reviews}
+  end
+
+  def reviewsByMovie
+    render json: {reviews: Movie.find_by_imdbID(params[:imdbID]).reviews}
   end
 
   private
