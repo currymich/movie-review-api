@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :movies, only: [:index, :show, :create] do
+  resources :movies, only: [:index, :show] do
     collection do
       get '/:id/reviews', to: 'movies#reviews'
+      get '/search', to: 'movies#search'
     end
   end
   resources :reviews

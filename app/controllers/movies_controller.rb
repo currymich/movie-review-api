@@ -1,4 +1,12 @@
 class MoviesController < ApplicationController
+  def search
+    title = params[:title].split(' ').join('+')
+
+    movie = HTTParty.get("http://www.omdbapi.com/?t=#{title}")
+
+    render json: {movie: movie}
+  end
+
   def reviews
     render json: {reviews: Movie.find(params[:id]).reviews}
   end
@@ -9,16 +17,6 @@ class MoviesController < ApplicationController
 
   def show
     render json: {movie: Movie.find(params[:id])}
-  end
-
-  def create
-    movie = Movie.new(movie_params)
-
-    if movie.save
-      render json: {status: 201, movie: movie}
-    else
-      render json: {status: 422}
-    end
   end
 
   def update
