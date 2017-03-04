@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
   get 'movies/:imdbID/reviews', to: 'reviews#reviewsByMovie'
-  post 'movies/:imdbID/reviews', to: 'reviews#newReview'
+  post 'movies/:id/reviews', to: 'reviews#newReview'
   get 'users/:id/reviews', to: 'reviews#reviewsByUser'
 end
 

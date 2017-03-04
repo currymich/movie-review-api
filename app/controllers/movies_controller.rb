@@ -34,12 +34,18 @@ class MoviesController < ApplicationController
   end
 
   def create
-    movie = Movie.new(movie_params)
+    saved_movie = Movie.find_by_imdbID(params[:imdbID])
+    if saved_movie == nil
+      movie = Movie.new(movie_params)
 
-    if movie.save
-      render json: {status: 201, movie: movie}
+      if movie.save
+        render json: {status: 201, message: 'Saving new movie to DB', movie: movie}
+      else
+        render json: {status: 422, message: 'Bad Params'}
+      end
+
     else
-      render json: {status: 422}
+      render json: {message: 'Movie already exists, using saved copy', movie: saved_movie}
     end
   end
 

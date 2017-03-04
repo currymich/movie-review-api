@@ -26,9 +26,7 @@ class ReviewsController < ApplicationController
   end
 
   def newReview
-    movie = Movie.find_by_imdbID(params[:imdbID])
     review = Review.new(review_params)
-    review[:movie_id] = movie.id
 
     if review.save!
       render json: {status: 201, review: review}
