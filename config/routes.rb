@@ -1,33 +1,40 @@
 Rails.application.routes.draw do
   resources :movies, only: [:index, :show, :create] do
     collection do
-      get '/:id/reviews', to: 'movies#reviews'
+      get '/search', to: 'movies#search'
     end
   end
-  resources :reviews
+  resources :reviews, only: [:show, :index, :destroy, :update]
   resources :users, only: [:create, :show] do
     collection do
       post '/login', to: 'users#login'
-      get '/:id/reviews', to: 'users#reviews'
+      put '/edit', to: 'users#update'
     end
   end
+  get 'movies/:imdbID/reviews', to: 'reviews#reviewsByMovie'
+  post 'movies/:id/reviews', to: 'reviews#newReview'
+  get 'users/:id/reviews', to: 'reviews#reviewsByUser'
 end
 
 
-# Prefix Verb        URI Pattern                          Controller#Action
-#        GET         /movies/:id/reviews(.:format)        movies#reviews
-# movies GET         /movies(.:format)                    movies#index
-#        POST        /movies(.:format)                    movies#create
-#  movie GET         /movies/:id(.:format)                movies#show
+# Prefix Verb   URI Pattern                       Controller#Action
+# GET           /movies/search(.:format)          movies#search
+# GET           /movies(.:format)                 movies#index
+# POST          /movies(.:format)                 movies#create
+# GET           /movies/:id(.:format)             movies#show
 
-# reviews GET        /reviews(.:format)                   reviews#index
-#        POST        /reviews(.:format)                   reviews#create
-# review GET         /reviews/:id(.:format)               reviews#show
-#        PATCH       /reviews/:id(.:format)               reviews#update
-#        PUT         /reviews/:id(.:format)               reviews#update
-#        DELETE      /reviews/:id(.:format)               reviews#destroy
 
-# login  POST        /users/login(.:format)               users#login
-#        GET         /users/:id/reviews(.:format)         users#reviews
-#  users POST        /users(.:format)                     users#create
-#   user GET         /users/:id(.:format)                 users#show
+# GET           /reviews(.:format)                reviews#index
+# GET           /reviews/:id(.:format)            reviews#show
+# PATCH         /reviews/:id(.:format)            reviews#update
+# PUT           /reviews/:id(.:format)            reviews#update
+# DELETE        /reviews/:id(.:format)            reviews#destroy
+# GET           /movies/:imdbID/reviews(.:format) reviews#reviewsByMovie
+# POST          /movies/:imdbID/reviews(.:format) reviews#newReview
+# GET           /users/:id/reviews(.:format)      reviews#reviewsByUser
+
+
+# POST          /users/login(.:format)            users#login
+# PUT           /users/edit(.:format)             users#update
+# POST          /users(.:format)                  users#create
+# GET           /users/:id(.:format)              users#show

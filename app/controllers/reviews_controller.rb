@@ -8,18 +8,6 @@ class ReviewsController < ApplicationController
     render json: Review.find(params[:id])
   end
 
-  def create
-    review = Review.new(review_params)
-
-    if review.save
-      render json: {status: 201, review: review}
-      # render json: review, status: :created, location: review
-    else
-      render json: {status: 422}
-      # render json: review.errors, status: :unprocessable_entity
-    end
-  end
-
   def update
     review = Review.find(params[:id])
 
@@ -35,6 +23,25 @@ class ReviewsController < ApplicationController
 
     review.destroy
     render json: {status: 204}
+  end
+
+  def newReview
+    review = Review.new(review_params)
+
+    if review.save!
+      render json: {status: 201, review: review}
+    else
+      render json: {status: 422}
+    end
+  end
+
+  def reviewsByUser
+    reviews = User.find(params[:id]).reviews
+    render json: {reviews: reviews}
+  end
+
+  def reviewsByMovie
+    render json: {reviews: Movie.find_by_imdbID(params[:imdbID]).reviews}
   end
 
   private

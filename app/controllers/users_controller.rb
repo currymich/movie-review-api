@@ -1,9 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorize, except: [:login, :create]
-
-  def reviews
-    render json: {reviews: User.find(params[:id]).reviews}
-  end
+  before_action :authorize, except: [:login, :create, :update]
 
   def create
     user = User.new(user_params)
@@ -21,7 +17,11 @@ class UsersController < ApplicationController
   end
 
   def login
-    user = User.find_by(email: params[:user][:email])
+    if params[:user][:email_username].include? "@"
+      user = User.find_by(email: params[:user][:email_username])
+    else
+      user = User.find_by(username: params[:user][:email_username])
+    end
 
     if user && user.authenticate(params[:user][:password])
       token = token(user.id, user.email)
@@ -29,6 +29,16 @@ class UsersController < ApplicationController
       render json: {status: 201, user: user, message: "user logged in", token: token}
     else
       render json: {status: 401, message: "unauthorized"}
+    end
+  end
+
+  def update
+    user = User.find_by_email(user_params[:email])
+
+    if user.update(user_params)
+      render json: {status: 201, user: user}
+    else
+      render json: {status: 422}
     end
   end
 
