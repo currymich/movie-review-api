@@ -27,9 +27,10 @@ class ReviewsController < ApplicationController
 
   def newReview
     review = Review.new(review_params)
+    movie = Movie.find(params[:movie_id])
 
     if review.save!
-      render json: {status: 201, review: review}
+      render json: {status: 201, review: review, movie: movie}
     else
       render json: {status: 422}
     end
