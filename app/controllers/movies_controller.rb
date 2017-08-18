@@ -2,11 +2,9 @@ class MoviesController < ApplicationController
   def search
     title = params[:title].split(' ').join('+')
 
-    movie_small = HTTParty.get("http://www.omdbapi.com/?s=#{title}&page=1")
+    results = HTTParty.get("https://api.themoviedb.org/3/search/multi?api_key=#{ENV['TMDB_API_KEY']}&language=en-US&query=#{title}&page=1&include_adult=false")
 
-    movie_large = HTTParty.get("http://www.omdbapi.com/?t=#{title}")
-
-    render json: {small: movie_small, large: movie_large}
+    render json: {results}
   end
 
   def index
