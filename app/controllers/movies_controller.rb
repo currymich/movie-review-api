@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
 
     @multi = HTTParty.get("https://api.themoviedb.org/3/search/multi?api_key=#{ENV['TMDB_API_KEY']}&language=en-US&query=#{@title}&page=1&include_adult=false")
 
-    @detailed = HTTParty.get("https://api.themoviedb.org/3/movie/#{@multi.results[0].id}?api_key=#{ENV['TMDB_API_KEY']}&language=en-US")
+    @detailed = HTTParty.get("https://api.themoviedb.org/3/movie/#{@multi['results'][0]['id']}?api_key=#{ENV['TMDB_API_KEY']}&language=en-US")
 
     render json: {results: @results, detailed: @detailed}
   end
