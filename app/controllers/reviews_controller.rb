@@ -1,7 +1,17 @@
 class ReviewsController < ApplicationController
 
   def index
-    render json: Review.all
+    reviews = Review.all
+
+    review_posters = Hash.new
+
+    reviews.each do |review|
+      id = review['id']
+      movie_id = review['movie_id']
+      review_posters[id] = Movie.find(movie_id).Poster
+    end
+
+    render json: {reviews: reviews, posters: review_posters}
   end
 
   def show
@@ -47,6 +57,6 @@ class ReviewsController < ApplicationController
   private
 
     def review_params
-      params.require(:review).permit(:title, :rating, :comments, :user_id, :movie_id)
+      params.require(:review).permit(:title, :rating, :comments, :user_id, :movie_id, :imdbID)
     end
 end
